@@ -27,6 +27,12 @@ class Employee {
 
 
 class Male extends Employee {
+
+  constructor (name,age,wifeName) {
+    super(name,age);
+    this.wifeName = wifeName;
+  }
+
   info () {
     return 'tao la class Male'
   }
