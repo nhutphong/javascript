@@ -111,3 +111,63 @@ console.log(listData);
 // property shorthand
 var name = "nguyen chi thong";
 var age = 30;
+
+
+// unpack variable
+var getObject = () => {
+    return {
+        name : "Vũ Thanh Tài",
+        age : 22,
+        hometown: "Nam Định"
+    }; //return object{}
+}
+// unpack {}
+var {name, age, hometown} = getObject();
+console.log("name: " + name,
+             "age: " + age,
+             "hometown: " + hometown);
+
+
+
+var getObject = () => {
+    return {
+        name : "Vũ Thanh Tài",
+        option: {
+            age : 22,
+            hometown: "Nam Định",
+        }
+    };
+}
+var {name, option: { age, hometown } } = getObject();
+console.log("name: " + name,
+           "age: " + age,
+           "hometown: " + hometown);
+
+
+
+var num = [1];
+var [a = "Default", b = "Default"] = num;
+console.log(a, b);
+// a = 1
+// b = Default
+
+var student = { name: "Vũ Thanh Tài"};
+var {name = "Not Set", age = "Not Set"} = student;
+console.log(name, age);
+// name = Vũ Thanh Tài
+// age = Not Set
+//
+//
+//
+function logArray ([a, b]) {
+    console.log(a, b);
+}
+logArray(["Tham Số A -", "- Tham số B"]);
+//Tham Số A - - Tham số B
+
+
+function logObject ({a, b}) {
+    console.log(a, b);
+}
+logObject({a: "Tham Số A -", b: "- Tham số B"});
+//Tham Số A - - Tham số B
