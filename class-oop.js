@@ -109,8 +109,12 @@ console.log(listData);
 
 
 // property shorthand
-var name = "nguyen chi thong";
-var age = 30;
+
+var name = "Vũ Thanh Tài";
+var age = 22;
+var student = {name, age};
+console.log(student);
+//{name: "Vũ Thanh Tài", age: 22}
 
 
 // unpack variable
