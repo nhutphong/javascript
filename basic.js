@@ -12,75 +12,50 @@ let <name>: block scoped: chi ton tai trong khoi: if, for, while, ...
 riêng + là + string -> "5"+ 2 là "52"
 '5' * 2 = 10
 
-for(x in dict) { dict[x] }
+#for
+for (let i of [1, 2, 3]) {
+  console.log(i)
+}
+// 1
+// 2
+// 3
 
-function loop(){
-  for(var <param> of <arguments>){
-    console.log(param)
+for (let [index, value] of ['hi', 'hello', 'world'].entries()) {
+  console.log(index, value)
+}
+// 0 "hi"
+// 1 "hello"
+// 2 "world"
+
+const obj = {key1: 'hi', key2: 'hello', key3: 'world'};
+for (let key in obj) {
+  console.log(key, obj[key])
+}
+// or
+for (let [key, value] of Object.entries(obj)) {
+  console.log(key, value)
+}
+// key1 hi
+// key2 hello
+// key3 world
+
+
+#generator
+function * countdown(n) {
+  for (let i = n; i > 0; --i) {
+    yield i
   }
 }
-arguments <=> *args(tupple)
-loop('nhut', 'dung', 'thông')
 
-var dict = {name: 'phong', old: 26, myfunc: function(){ return this.name+this.old} }
-name,old là instance attr
-myfunc là method của dict
+[...countdown(3)] // [ 3, 2, 1 ]
 
-class
-contructor( param1, ....){}
-
-static hello(){}
-dùng class_name.hello() để call static method, ko dùng đc instance
-
-super(params,...); call class_cha
-
-var dict = {
-    name = "phong",
-    get product() { return this.name; },
-    set product(value) { this.name=value; }
-}
-
-dict{} là obj.name, obj old
-dict.name || dict['name']
-
-var list =['apple', 'cam']
-var list = new Array ()
-
-basic
-function myfunc() {return "";}
-
-hay dùng trong object{} <=> dict{} python
-function(name, old){
-  console.log(name,old)
-} <=> lambda python
-
-khai báo nhanh func
-
-hello = function(params,...){
-
-  }
-hay dùng trong dict {myMethod: function() {}}
-
-arrow func cũng vậy
-hello = () => "hello arrow";
-hello = (val) => "hello"+ val;
-hello = (pa1, pa2) { return pa1+pa2;}
+//
+let gen = countdown(3)
+gen.next() // 3
+gen.next() // 2
 
 
-xuất 1 obj, or 1 class duy nhất
-#one.js
-export default class MyClass {}
-or
-export default { MyClass }
 
-#two.js
-NameHa <=> MyClass
-import <NameHa> from 'one.js'
-
-names <=> file.js name
-import * as names from 'three.js'
-
-names.func1, names.func2,... 
 
 #function
 timeout = setTimeout(function() {

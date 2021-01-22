@@ -36,11 +36,30 @@ domain;
 var getName = function (name) {
     return name;
 }
-
+// export default dung 1 lan trong file
+// export default 1 funciton or 1 class or 1 object{}
 export default getName;
 
-/*file main.js*/
-import name from "module.js";
-//gọi hàm getName bên file module.js
-name("Vũ Thanh Tài");
-//Vũ Thanh Tài
+export default function () {
+  alert("Hello Default Export")
+}
+
+
+
+//  say.js
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+function sayBye(user) {
+  alert(`Bye, ${user}!`);
+}
+
+export {sayHi, sayBye}; // a list of exported variables
+
+
+//  main.js
+import {sayHi as hi, sayBye as bye} from './say.js';
+
+hi('John'); // Hello, John!
+bye('John'); // Bye, John!
