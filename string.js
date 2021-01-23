@@ -97,7 +97,7 @@ console.log(String.fromCharCode(32));//'' empty space!
 
 const arr = [77, 97, 121, 32, 116, 104, 101, 32, 70, 111, 114, 99, 101, 32, 66, 101, 32, 87, 105, 116, 104, 32, 89, 111, 117];
 const quotes = arr.map(n => String.fromCharCode(n));
-console.log(quote.join('')); //May the Force Be With You
+console.log(quotes.join('')); //May the Force Be With You
 
 
 //slice(start, end)
@@ -109,13 +109,28 @@ console.log(string.slice(1));//’m just a simple man trying to make my way in t
 console.log(string.slice(0,10));//I’m just a
 console.log(string.slice(-3));//se.
 
-
 const string = 'Darth Vader';
 console.log(string.substring(0));//Darth Vader
 console.log(string.substring(6));//Vader
 console.log(string.substring(1,6));//arth
 
+var str = "Apple, Banana, Kiwi";
+var res = str.substr(7, 6); //Banana
+
+
+// join one or more strings
+var text = "Hello" + " " + "World!";
+var text = "Hello".concat(" ", "World!");
+
 
 // del spaces
 const string = '      Yoda     ';
 console.log(string.trim());//Yoda
+
+
+// add 000+5 la 4 '0005'
+let str = "5";
+str = str.padStart(4,0); //0005
+
+let str = "5";
+str = str.padEnd(4,0); //5000
