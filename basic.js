@@ -12,7 +12,6 @@ let <name>: block scoped: chi ton tai trong khoi: if, for, while, ...
 riêng + là + string -> "5"+ 2 là "52"
 '5' * 2 = 10
 
-#for
 for (let i of [1, 2, 3]) {
   console.log(i)
 }
@@ -57,7 +56,6 @@ gen.next() // 2
 
 
 
-#function
 timeout = setTimeout(function() {
   #code tùy ý}, 1000
 ) -> cho sau 1s run 1lan va ket thuc
