@@ -1,3 +1,49 @@
+/*
+  Displaying the Object Properties: obj.propertyName
+  Displaying the Object Properties: for key in obj
+  Displaying the Object using     : Object.values(obj)
+  Displaying the Object using       JSON.stringify(obj)
+   
+  var obj = {}; //nen dung keyword const
+*/
+
+var person = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+document.getElementById("demo").innerHTML =
+person.name + "," + person.age + "," + person.city; //c1
+
+
+let txt = "";
+for (let x in person) { //c2
+  txt += person[x] + " ";
+};
+document.getElementById("demo").innerHTML = txt;
+
+
+var myArray = Object.values(person); //c3
+document.getElementById("demo").innerHTML = myArray; // John,30,New York
+
+let myString = JSON.stringify(person); //c4
+document.getElementById("demo").innerHTML = myString; // {"name":"John","age":30,"city":"New York"}
+
+
+var person = {
+  name: "John",
+  age: function () {return 30;} // hidden by JSON
+};
+
+person.age = person.age.toString(); // convert to string se hien function
+
+let myString = JSON.stringify(person);
+document.getElementById("demo").innerHTML = myString; // {"name":"John","age":"function () {return 30;}"}
+
+ 
+
+
 // literal
 const dog = { }
 
