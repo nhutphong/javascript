@@ -91,9 +91,9 @@ class Employee {
     return this.age;
   }
 
-  info () {
-    return 'tao la class Employee'
-  }  
+  static info () {
+    return 'chi co the access = class ; NOT instance'
+  }//  Employee.info() ; not employ.info()
 };
 
 
