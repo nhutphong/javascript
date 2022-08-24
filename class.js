@@ -1,4 +1,74 @@
+
+
+// Destructuring = phep gan manh me
+// array stirng dung ngoac [ ]
+var a = 1;
+var b = 2;
+[a, b] = [b, a]
+console.log(a, b) ;//2, 1
+
+var res = () => [1, 2, 3]
+var [a, ,b] = res() // ignoring value
+console.log(a, b) ;//1,3
+
+
+var res = {blog: 'anonystick.com', type: 'javascript'}
+var {blog: nameBlog, type: newType} = res;
+console.log(nameBlog, newType);//anonystick.com, javascript
+
+
+var blogs = {
+  anonystick: [
+    {
+      pageFacebook: 'Tip javascript Viet Nam',
+      likes: 4789,
+      daily: 1323
+    }
+  ]
+}
+
+var {
+  anonystick: [
+    {
+      pageFacebook: namePage,
+      likes: numLikes,
+      daily: numDaily
+    }
+  ]
+} = blogs;
+console.log(namePage, numLikes, numDaily );//Tip javascript Viet Nam, 4789, 1323
+
+
+let user = {
+  name: "John",
+  age: 30
+};
+
+// loop over keys-and-values
+for (let [key, value] of Object.entries(user)) {
+  alert(`${key}:${value}`); // name:John, then age:30
+}
+
+// Destructuring object dung ngoac {}
+let options = {
+  title: "Menu"
+};
+
+let {width = 100, height = 200, title} = options;
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+
+// title = property named title
+// rest = object with the rest of properties
+let {title, ...rest} = options;
+
+// now title="Menu", rest={height: 200, width: 100}
+
+
+
 class Employee {
+
   constructor (name, age) {
     console.log("tao la constructor Employee")
     this.name = name;
@@ -51,22 +121,6 @@ var male = new Male("chi thong", 30);
 console.log(male.name, male.age)
 console.log(male.info())
 console.log(male.callInfo())
-
-// ...array = *tuple
-console.log("...array parameter")
-function getParam(a, b, ...c) {
-    console.log("a = " + a);
-    console.log("b = " + b);
-    console.log("...c = *c python " + c);
-}
-getParam(1, "haha", 2, 5, 0, 3);
-
-
-arrayOne = [1, 'dung', 3, 'thong'];
-arrayTwo = [...arrayOne, 5, 6, 7, 8];
-console.log("arrayOne: " + arrayOne);
-console.log("arrayTwo = [...arrayOne, 5, 6, 7, 8]");
-console.log("arrayTwo: " + arrayTwo);
 
 
 // template literals (use backtick=``)
@@ -156,12 +210,10 @@ console.log(a, b);
 // b = Default
 
 var student = { name: "Vũ Thanh Tài"};
-var {name = "Not Set", age = "Not Set"} = student;
+var {name = "Default name", age = "Default tuoi"} = student;
 console.log(name, age);
 // name = Vũ Thanh Tài
-// age = Not Set
-//
-//
+// age = "Defalut tuoi"
 //
 function logArray ([a, b]) {
     console.log(a, b);
@@ -175,3 +227,75 @@ function logObject ({a, b}) {
 }
 logObject({a: "Tham Số A -", b: "- Tham số B"});
 //Tham Số A - - Tham số B
+
+
+// private data, use funciton scope
+function carMonitor() {
+    var speed = 0;
+
+    return {
+        accelerate: function () {
+            return speed++;
+        }
+    }
+}
+
+var car = new carMonitor();
+var redCar = new carMonitor()
+console.log(car.accelerate()); // 0
+console.log(car.accelerate()); // 1
+console.log(redCar.accelerate()); // 0
+console.log(redCar.accelerate()); // 1
+console.log(car.accelerate()); // 2
+console.log(redCar.accelerate()); // 2
+console.log(speed); // speed is not defined
+
+
+/* 
+  dung #variable_name
+  khong the access outside class
+  this.myVar is inside class
+  myObj.myVar is outsite class
+*/
+class ObjectCreator {
+    #meaningOfLife;
+
+    constructor(name) {
+        this.#meaningOfLife = 42;
+    }
+
+    returnMeaningOfLife() {
+        return this.#meaningOfLife;
+    }
+
+    #returnAMessage() {
+        return "You will do great things in life";
+    }
+}
+
+const myObject = new ObjectCreator("Parwinder");
+console.log(myObject.returnMeaningOfLife()); // 42
+console.log(myObject["#meaningOfLife"]); // undefined
+console.log(myObject.#meaningOfLife); // SyntaxError
+console.log(myObject.#returnAMessage); // SyntaxError
+
+
+/*
+  without a setter
+
+*/
+class NameGenerator {
+    _name;
+
+    constructor(name) {
+        this._name = name;
+    }
+
+    get name() {
+        return this._name;
+    }
+}
+
+let nameGenerator = new NameGenerator("John");
+console.log(`My name is ${nameGenerator.name}`); // My name is John
+nameGenerator.name = "Jane"; // Cannot assign to 'name' because it is a read-only property.
