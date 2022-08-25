@@ -4,7 +4,12 @@
 	Promise: code bat dong bo
 
 	async: upgrade of Promise; code de nhin hon
+	Await – tạm dừng việc thực hiện các hàm async. (Var result = await someAsyncCall ().
+	Khi được đặt trước một Promise, nó sẽ đợi cho đến khi Promise kết thúc và trả về kết quả.
+	Await chỉ làm việc với Promises, nó không hoạt động với callbacks.
+	Await chỉ có thể được sử dụng bên trong các function async.
 
+	async-await, lam cho code bat dong do, run dong bo( tu code run tu tren xuong duoi)
 */
 
 setInterval(myFunction, 1000);
@@ -76,12 +81,13 @@ promise
 // async await
 
 /*
+	// async fucntion getData() {}
 	const getData = async() => {
 		var data = "Hello World";
-		return data; // pass data to then((data) => {})
+		return data; // pass data to resolve(data) of reject(data)
 	}
 
-	// ngam run resolve(data)
+	// khong co keyword await data; nen code them line duoi
 	getData().then(data => console.log(data)); c1
 */
 
@@ -129,7 +135,7 @@ var promise = new Promise(function (resolve, reject) {
     resolve('Promise resolved')}, 4000); 
 });
 
-// async function
+// async function, check try catch nen dung
 async function asyncFunc() {
     try {
         // wait until the promise resolves 
@@ -141,9 +147,46 @@ async function asyncFunc() {
         console.log(error);
     }
 }
-
 // calling the async function
 asyncFunc(); // Promise resolved
+
+
+//
+/*
+	  // Async function without a try/catch block.
+    async function doSomethingAsync(){
+        // This async call may fail.
+        let result = await someAsyncCall();
+        return result;
+    }
+
+    // We catch the error upon calling the function.
+    doSomethingAsync().
+        .then(successHandler)
+        .catch(errorHandler);
+*/
+
+
+
+/*
+	sync function getABC() {
+    let A = await getValueA(); // cho run A xong moi toi B va toi C;
+    let B = await getValueB();
+    let C = await getValueC();
+    return A * B * C;
+    // vi B cung ko nhan value tu A, va C cung ko nhan value tu B
+    // nen await nhu vay rat slow
+    // nen dung c2
+	}
+  
+  // c2
+	async  function  getABC () {
+      let results = await Promise.all([ getValueA, getValueB, getValueC ]); //run promise 1,2,3 cung luc
+      return results.reduce((total,value) => total * value);
+    }
+
+*/
+
 
 
 
