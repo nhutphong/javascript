@@ -22,6 +22,10 @@ function myFunction() {
   d.getSeconds();
 }
 
+
+
+
+
 // Promise
 
 function myDisplayer(some) {
@@ -89,22 +93,78 @@ promise
 
 	// khong co keyword await data; nen code them line duoi
 	getData().then(data => console.log(data)); c1
+
+
+	// async fucntion getData() {}
+	const getData = async() => {
+		var data = await "Hello World";
+		return data;
+	}
+	// khong can code them .then
 */
 
-const getData = async() => {
-	var y = await "Hello World";  // pass data ngam to c1
-	console.log(y);
+
+
+
+const human = async() => {
+	var value;
+	for (let i = 1; i<6; i++) {
+		console.log(`human start${i}`);
+
+		let value = await i;
+
+		console.log(`human end ${i}`);
+		console.log(value);
+	}
+	return value
 }
 
+const animal = async() => {
+	var value;
+	for (let i = 1; i<6; i++) {
+		console.log(`animal start${i}`);
+
+		value = await i;
+
+		console.log(`animal end ${i}`);
+	}
+	return value
+}
+
+const machine = async() => {
+	var value;
+	for (let i = 1; i<6; i++) {
+		console.log(`machine start${i}`);
+
+		value = await i;
+
+		console.log(`machine end ${i}`);
+		console.log(value);
+	}
+	return value
+}
+
+async function test() {
+	let list = await Promise.all([animal(), human(), machine()]);
+	return list;
+}
+
+async function main() {
+	let data = await test();
+	console.log(data);
+}
+
+
+
 console.log(1);
-getData();
+main();
 console.log(2);
 console.log(3);
 console.log(4);
 
 
 
-function asynchronous_operational_method() {
+async function asynchronous_operational_method() {
 	let first_promise = new Promise((resolve, reject) => {
 		setTimeout(() => {
 		resolve(" haha..");
@@ -117,8 +177,9 @@ function asynchronous_operational_method() {
 		}, 1000);
 	});
 
-	let combined_promise = Promise.all([first_promise, second_promise]);
-		return combined_promise;
+	let combined_promise = await Promise.all([first_promise, second_promise]);
+
+	return combined_promise;
 }
 
 async function display() {
@@ -187,6 +248,41 @@ asyncFunc(); // Promise resolved
 
 */
 
+// declare promise; promise = one(); khi run moi la promise
+// var one = async() => {
+// 		var data = await "ONEEEEEEEEEEEEEEEEEE";
+// 		return data;
+// 	}
+
+// var two = async() => {
+// 		var data = await "TWOOOOOOOOOOOOOOO";
+// 		return data;
+// 	}
+
+// var three = async() => {
+// 		var data = await "THREEEEEEEEEEEEEEE";
+// 		return data;
+// 	}
 
 
+// async function testOne() {
+// 	let list = await Promise.all([one(), two(), three()]);
+// 	return list;
+// }
+
+// async function mainOne() {
+// 	let data = await testOne();
+// 	console.log(data);
+// }
+
+
+console.log(1);
+// mainOne();
+console.log(2);
+console.log(3);
+console.log(4);
+
+// one().then((value) => {console.log(value)});
+// two().then((value) => {console.log(value)});
+// three().then((value) => {console.log(value)});
 
