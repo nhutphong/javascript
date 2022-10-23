@@ -2,6 +2,12 @@
 
 // Destructuring = phep gan manh me
 // array stirng dung ngoac [ ]
+
+/*
+  destructuring hay dung, cho export default {}
+  {name, old, city} = obj
+  [one, two three] = [1,2,3]
+*/
 var a = 1;
 var b = 2;
 [a, b] = [b, a]
