@@ -56,7 +56,8 @@ Array.from({length: 5}, (v, i) => i);
 // [0, 1, 2, 3, 4]
 
 
-// all following calls return true
+// bool
+// all return true
 Array.isArray([]);
 Array.isArray([1]);
 Array.isArray(new Array());
@@ -65,7 +66,7 @@ Array.isArray(new Array(3));
 // Little known fact: Array.prototype itself is an array:
 Array.isArray(Array.prototype);
 
-// all following calls return false
+// all return false
 Array.isArray();
 Array.isArray({});
 Array.isArray(null);
@@ -79,9 +80,9 @@ Array.isArray(new Uint8Array(32));
 // array literal syntax or the Array constructor
 Array.isArray({ __proto__: Array.prototype });
 
-
+// new array
 Array.of(7); // [7]
-Array(7); // array of 7 empty slots
+Array(7); // array of 7 empty slots = array.length = 7
 
 Array.of(1, 2, 3); // [1, 2, 3]
 Array(1, 2, 3);    // [1, 2, 3]
@@ -104,27 +105,28 @@ arr.forEach((element) => console.log(element));
 // 2
 
 
-// at(index) == arr[index]
+// Array.at(index) == arr[index]
 
 
+// arr + arr2 + arr3 + ...
 const num1 = [1, 2, 3];
 const num2 = [4, 5, 6];
 const num3 = [7, 8, 9];
 const numbers = num1.concat(num2, num3);
 console.log(numbers);
-// results in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const letters = ["a", "b", "c"];
 const alphaNumeric = letters.concat(1, [2, 3]);
 console.log(alphaNumeric);
-// results in ['a', 'b', 'c', 1, 2, 3]
+// ['a', 'b', 'c', 1, 2, 3]
 
 const num1 = [[1]];
 const num2 = [2, [3]];
 // num1 vs num2 da pass pointer to numbers,
 const numbers = num1.concat(num2);
 console.log(numbers);
-// results in [[1], 2, [3]]
+// [[1], 2, [3]]
 
 // modify the first element of num1
 num1[0].push(4); // numbers cung change=update
@@ -136,185 +138,25 @@ console.log([1, , 3].concat([4, 5])); // [1, empty, 3, 4, 5]
 console.log([1, 2].concat([3, , 5])); // [1, 2, 3, empty, 5]
 
 
-// copyWithin(target), vi kho co start, end, nen copy from index=0 to end
-// length lun = orgin array
-// [1,2,3] + index=-2, copy tu value 1 to 5, vi co length=5 nen chi append [1,2]
-// [1,2,3] + [1,2]
-console.log([1, 2, 3, 4, 5].copyWithin(-2));
-// [1, 2, 3, 1, 2]
-
-// copy from index=3 lay [4,5] pass to index=0
-console.log([1, 2, 3, 4, 5].copyWithin(0, 3));
-// [4, 5, 3, 4, 5]
-
-//copy index=[3:4] lay [4] pass to index=0
-// [4] + [2,3,4,5]
-console.log([1, 2, 3, 4, 5].copyWithin(0, 3, 4));
-// [4, 2, 3, 4, 5]
-
-// copy index=[-3:-1] lay [3,4] pass to index=-2
-// [1,2,3] + [3,4]
-console.log([1, 2, 3, 4, 5].copyWithin(-2, -3, -1));
-// [1, 2, 3, 3, 4]
-
-//copyWithin empty
-console.log([1, , 3].copyWithin(2, 1, 2)); // [1, empty, empty]
-
-
-// python enumerate('abc', 0) or enumerate(['a', 'b', 'c'], 0)
-const array = ['a', 'b', 'c'];
-const iterator = array.entries(); // [[0, 'a'], [1, 'b'], [2, 'c']]
-console.log(iterator.next().value);
-// [0, "a"]
-console.log(iterator.next().value);
-// [1, "b"]
-
-const a = ["a", "b", "c"];
-for (const [index, element] of a.entries()) {
-  console.log(index, element);
-}
-// 0 'a'
-// 1 'b'
-// 2 'c'
-
-const array = ["a", "b", "c"];
-const arrayEntries = array.entries();
-for (const element of arrayEntries) {
-  console.log(element);
-}
-// [0, 'a']
-// [1, 'b']
-// [2, 'c']
-
-for (const element of [, "a"].entries()) {
-  console.log(element);
-}
-// [0, undefined]
-// [1, 'a']
-
-//
-const array1 = ['a', 'b', 'c'];
-const iterator = array1.keys();
-
-for (const key of iterator) {
-  console.log(key);
-}
-// 0
-// 1
-// 2
-
-const arr = ['a', , 'c'];
-const sparseKeys = Object.keys(arr);
-const denseKeys = [...arr.keys()];
-console.log(sparseKeys); // ['0', '2']
-console.log(denseKeys);  // [0, 1, 2]
-
-
-const array1 = ['a', 'b', 'c'];
-const iterator = array1.values();
-
-for (const value of iterator) {
-  console.log(value);
-}
-
-// "a"
-// "b"
-// "c"
-
-const arr = ["a", "b", "c", "d", "e"];
-const iterator = arr.values();
-for (const letter of iterator) {
-  console.log(letter);
-} // "a" "b" "c" "d" "e"
-
-const arr = ["a", "b", "c", "d", "e"];
-const values = arr.values();
-for (const letter of values) {
-  console.log(letter);
-  if (letter === "b") {
-    break;
-  }
-}
-// "a" "b"
-
-for (const letter of values) {
-  console.log(letter);
-}
-// "c" "d" "e"
-
-
-//new array
-const array1 = [1, 4, 9, 16];
-// pass a function to map
-const map1 = array1.map(x => x * 2);
-console.log(map1);
-// [2, 8, 18, 32]
-
-
-// in-place
-const array = [1, 2, 3, 4];
-// fill with 0 from position 2 until position 4
-console.log(array.fill(0, 2, 4));
-// [1, 2, 0, 0]
-// fill with 5 from position 1
-console.log(array.fill(5, 1));
-// [1, 5, 5, 5]
-console.log(array.fill(6));
-// [6, 6, 6, 6]
-
-console.log([1, 2, 3].fill(4));                // [4, 4, 4]
-console.log([1, 2, 3].fill(4, 1));             // [1, 4, 4]
-console.log([1, 2, 3].fill(4, 1, 2));          // [1, 4, 3]
-console.log([1, 2, 3].fill(4, 1, 1));          // [1, 2, 3]
-console.log([1, 2, 3].fill(4, 3, 3));          // [1, 2, 3]
-console.log([1, 2, 3].fill(4, -3, -2));        // [4, 2, 3]
-console.log([1, 2, 3].fill(4, NaN, NaN));      // [1, 2, 3]
-console.log([1, 2, 3].fill(4, 3, 5));          // [1, 2, 3]
-console.log(Array(3).fill(4));                 // [4, 4, 4]
-
-// A single object, referenced by each slot of the array:
-const arr = Array(3).fill({}); // [{}, {}, {}]
-arr[0].hi = "hi";              // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
-
-
-const person = [];
-person["firstName"] = "John";
-person["lastName"] = "Doe";
-person["age"] = 46;
-// khi dung key, value cho array thi array do se duoc convert ve object; dung nhu object
-person.length;     // Will return 0
-person[0];  // NOT; object ma
-
-
-// new string
-const a = ['Wind', 'Water', 'Fire'];
-a.join();      // 'Wind,Water,Fire'
-a.join(', ');  // 'Wind, Water, Fire'
-a.join(' + '); // 'Wind + Water + Fire'
-a.join('');    // 'WindWaterFire'
-
-console.log([1, , 3].join()); // '1,,3'
-console.log([1, undefined, 3].join()); // '1,,3' 
-
-// in-place
-// add end "kiwi" into arr
+// --------------------------------in-place--------------------------------------------
+// insert end "kiwi" into arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var len = fruits.push("Kiwi");
 
-// del last item of arr
+// remove last item of arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var del_end_item = fruits.pop(); // 'Mango'
 
-// add first "Lemon" into arr
+// insert first "Lemon" into arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.unshift("Lemon"); // lenght=5
 
-// xoa first item
+// remove first item
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var del_first_item = fruits.shift(); "Banana"
 
 
-// in-place
+// in-place, insert remove
 const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
 const removed = myFish.splice(2, 0, 'drum');
 
@@ -391,6 +233,63 @@ var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort(); // in-place
 fruits.reverse(); // in-place
 
+
+// in-place
+const array = [1, 2, 3, 4];
+// fill with 0 from position 2 until position 4
+console.log(array.fill(0, 2, 4));
+// [1, 2, 0, 0]
+// fill with 5 from position 1
+console.log(array.fill(5, 1));
+// [1, 5, 5, 5]
+console.log(array.fill(6));
+// [6, 6, 6, 6]
+
+console.log([1, 2, 3].fill(4));                // [4, 4, 4]
+console.log([1, 2, 3].fill(4, 1));             // [1, 4, 4]
+console.log([1, 2, 3].fill(4, 1, 2));          // [1, 4, 3]
+console.log([1, 2, 3].fill(4, 1, 1));          // [1, 2, 3]
+console.log([1, 2, 3].fill(4, 3, 3));          // [1, 2, 3]
+console.log([1, 2, 3].fill(4, -3, -2));        // [4, 2, 3]
+console.log([1, 2, 3].fill(4, NaN, NaN));      // [1, 2, 3]
+console.log([1, 2, 3].fill(4, 3, 5));          // [1, 2, 3]
+console.log(Array(3).fill(4));                 // [4, 4, 4]
+
+// A single object, referenced by each slot of the array:
+const arr = Array(3).fill({}); // [{}, {}, {}]
+arr[0].hi = "hi";              // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
+
+
+// copy insert overwrite
+// copyWithin(target), vi kho co start, end, nen copy from index=0 to end
+// length lun = orgin array
+// [1,2,3] + index=-2, copy tu value 1 to 5, vi co length=5 nen chi append [1,2]
+// [1,2,3] + [1,2]
+console.log([1, 2, 3, 4, 5].copyWithin(-2));
+// [1, 2, 3, 1, 2]
+
+var array = [1, 2, 3, 4, 5, 6, 7];
+// copy [4,5,6] to index=0
+array.copyWithin(0, 3, 6) // [4,5,6,4,5,6,7]
+
+// copy from index=3 lay [4,5] pass to index=0
+console.log([1, 2, 3, 4, 5].copyWithin(0, 3));
+// [4, 5, 3, 4, 5]
+
+//copy index=[3:4] lay [4] pass to index=0
+// [4] + [2,3,4,5]
+console.log([1, 2, 3, 4, 5].copyWithin(0, 3, 4));
+// [4, 2, 3, 4, 5]
+
+// copy index=[-3:-1] lay [3,4] pass to index=-2
+// [1,2,3] + [3,4]
+console.log([1, 2, 3, 4, 5].copyWithin(-2, -3, -1));
+// [1, 2, 3, 3, 4]
+
+//copyWithin empty
+console.log([1, , 3].copyWithin(2, 1, 2)); // [1, empty, empty]
+
+
 // sort array co items la number phai co function
 var points = [40, 100, 1, 5, 25, 10];
 points.sort(function(a, b){return a - b}); // increase = tang dan
@@ -408,9 +307,110 @@ var cars = [
 ];
 cars.sort(function(a, b){return a.year - b.year}); // increase
 
+// --------------------------------in-place end----------------------------------------
+
+// python enumerate('abc', 0) or enumerate(['a', 'b', 'c'], 0)
+const array = ['a', 'b', 'c'];
+const iterator = array.entries(); // [[0, 'a'], [1, 'b'], [2, 'c']]
+console.log(iterator.next().value);
+// [0, "a"]
+console.log(iterator.next().value);
+// [1, "b"]
+
+const a = ["a", "b", "c"];
+for (const [index, element] of a.entries()) {
+  console.log(index, element);
+}
+// 0 'a'
+// 1 'b'
+// 2 'c'
+
+const array = ["a", "b", "c"];
+const arrayEntries = array.entries();
+for (const element of arrayEntries) {
+  console.log(element);
+}
+// [0, 'a']
+// [1, 'b']
+// [2, 'c']
+
+for (const element of [, "a"].entries()) {
+  console.log(element);
+}
+// [0, undefined]
+// [1, 'a']
+
+//
+const array1 = ['a', 'b', 'c'];
+const iterator = array1.keys();
+
+for (const key of iterator) {
+  console.log(key);
+}
+// 0
+// 1
+// 2
+
+const arr = ['a', , 'c'];
+const sparseKeys = Object.keys(arr);
+const denseKeys = [...arr.keys()];
+console.log(sparseKeys); // ['0', '2']
+console.log(denseKeys);  // [0, 1, 2]
+
+
+const array1 = ['a', 'b', 'c'];
+const iterator = array1.values();
+
+for (const value of iterator) {
+  console.log(value);
+}
+// "a"
+// "b"
+// "c"
+
+const arr = ["a", "b", "c", "d", "e"];
+const iterator = arr.values();
+for (const letter of iterator) {
+  console.log(letter);
+} // "a" "b" "c" "d" "e"
+
+const arr = ["a", "b", "c", "d", "e"];
+const values = arr.values();
+for (const letter of values) {
+  console.log(letter);
+  if (letter === "b") {
+    break;
+  }
+}
+// "a" "b"
+
+for (const letter of values) {
+  console.log(letter);
+}
+// "c" "d" "e"
+
+
+const person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+// khi dung key, value cho array thi array do se duoc convert ve object; dung nhu object
+person.length;     // Will return 0
+person[0];  // NOT; object ma
+
+
+// new string
+const a = ['Wind', 'Water', 'Fire'];
+a.join();      // 'Wind,Water,Fire'
+a.join(', ');  // 'Wind, Water, Fire'
+a.join(' + '); // 'Wind + Water + Fire'
+a.join('');    // 'WindWaterFire'
+
+console.log([1, , 3].join()); // '1,,3'
+console.log([1, undefined, 3].join()); // '1,,3' 
+
 
 // loop array dung methods
-
 var arr = [1, 2, 3, 4, 5, 6];
 // Array.forEach(function)
 arr.forEach(value => {
@@ -427,6 +427,13 @@ function myFunction(value, index, array) {
   txt += value + "<br>"; 
 }
 
+
+//new array; 
+const array1 = [1, 4, 9, 16];
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+console.log(map1);
+// [2, 8, 18, 32]
 
 // new array (item co the + - * /)
 var numbers1 = [45, 4, 9, 16, 25];
@@ -480,7 +487,28 @@ console.log([1, , undefined].filter((x) => x === undefined)); // [undefined]
 console.log([1, , undefined].filter((x) => x !== 2)); // [1, undefined]
 
 
-//searching
+//------------------------------searching-----------------------------------------
+// return -1 if NOT found else (index of item)
+const array = [2, 9, 9];
+array.indexOf(2);     // 0
+array.indexOf(7);     // -1
+array.indexOf(9, 2);  // 2
+array.indexOf(2, -1); // -1
+array.indexOf(2, -3); // 0
+
+
+// Finding all the occurrences of an element
+const indices = [];
+const array = ['a', 'b', 'a', 'c', 'a', 'd'];
+const element = 'a';
+let idx = array.indexOf(element);
+while (idx !== -1) {
+  indices.push(idx);
+  idx = array.indexOf(element, idx + 1);
+}
+console.log(indices);
+// [0, 2, 4]
+
 // return item dau tien thoa man dieu kien = left to right
 const array1 = [5, 12, 8, 130, 44];
 const found = array1.find(element => element > 10);
@@ -540,6 +568,7 @@ const isLargeNumber = (element) => element > 45;
 console.log(array1.findLastIndex(isLargeNumber));
 // index=3  (of element with value: 130)
 
+//------------------------------searching end--------------------------------------
 
 // new array
 const arr1 = [0, 1, 2, [3, 4]];
@@ -547,11 +576,11 @@ console.log(arr1.flat());
 // [0, 1, 2, 3, 4]
 
 const arr2 = [0, 1, 2, [[[3, 4]]]];
-console.log(arr2.flat(2));
+console.log(arr2.flat(2)); // lam phang 2 array
 // [0, 1, 2, [3, 4]]
 
 const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
-arr4.flat(Infinity);
+arr4.flat(Infinity); // lam phang all array
 // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const arr5 = [1, 2, , 4, 5];
@@ -634,7 +663,22 @@ const flattened = arrays.reduceRight((a, b) => a.concat(b), []);
 // flattened is [4, 5, 2, 3, 0, 1]
 
 
+// ----------------------------------------bool-------------------------------------
 // bool
+// check item co exist hay ko
+// array co chua item ko, == python: 'item' in array
+var arr = ['Nam', 2, 3, 4, 5, 6];
+arr.includes('Nam'); // true
+arr.includes(7); // false
+[1, 2, 3].includes(2)         // true
+[1, 2, 3].includes(4)         // false
+[1, 2, 3].includes(3, 3)      // false
+[1, 2, 3].includes(3, -1)     // true
+[1, 2, NaN].includes(NaN)     // true
+["1", "2", "3"].includes(3)   // false
+console.log([1, , 3].includes(undefined)); // true
+
+
 // all items phai > 18 thi moi true ; || false
 var numbers = [45, 4, 9, 16, 25];
 var allOver18 = numbers.every(myFunction);
@@ -644,6 +688,7 @@ function myFunction(value, index, array) {
 }
 var arr = [1, 2, 3, 4, 5, 6];
 var greaterFour = arr.every(num => num > 4);
+
 
 // bool
 // chi 1 item > 10 thi true ;
@@ -660,36 +705,4 @@ function checkAvailability(arr, val) {
 checkAvailability(fruits, 'kela');   // false
 checkAvailability(fruits, 'banana'); // true
 
-
-// bool
-// check item co exist hay ko
-var arr = ['Nam', 2, 3, 4, 5, 6];
-arr.includes('Nam'); // true
-arr.includes(7); // false
-[1, 2, 3].includes(2)         // true
-[1, 2, 3].includes(4)         // false
-[1, 2, 3].includes(3, 3)      // false
-[1, 2, 3].includes(3, -1)     // true
-[1, 2, NaN].includes(NaN)     // true
-["1", "2", "3"].includes(3)   // false
-console.log([1, , 3].includes(undefined)); // true
-
-// return -1 if NOT found else (index of item)
-const array = [2, 9, 9];
-array.indexOf(2);     // 0
-array.indexOf(7);     // -1
-array.indexOf(9, 2);  // 2
-array.indexOf(2, -1); // -1
-array.indexOf(2, -3); // 0
-
-// Finding all the occurrences of an element
-const indices = [];
-const array = ['a', 'b', 'a', 'c', 'a', 'd'];
-const element = 'a';
-let idx = array.indexOf(element);
-while (idx !== -1) {
-  indices.push(idx);
-  idx = array.indexOf(element, idx + 1);
-}
-console.log(indices);
-// [0, 2, 4]
+// ----------------------------------------bool end---------------------------------

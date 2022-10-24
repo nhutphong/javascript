@@ -4,45 +4,44 @@
 
 */
 
-
 // dung back-tics `voi ${expression}`
 var firstName = "John";
 var lastName = "Doe";
-var fullName = `Welcome ${firstName}, ${lastName}!`;
-
-var price = 10;
-var VAT = 0.25;
-var total = `Total: ${(price * (1 + VAT)).toFixed(2)}`;
+var fullName = `Welcome ${firstName}, ${lastName}!`
 
 
 var str = "i am a string";
 console.log(str.length); //13
 
-//slice(start, end)
-//substring(start, end)
-//substr(start, length)
-
-var string = 'I’m just a simple man trying to make my way in the universe.';
-console.log(string.slice(1));
-console.log(string.slice(0,10));
-console.log(string.slice(-3));
-
-var string = 'Darth Vader';
-console.log(string.substring(0));//Darth Vader
-console.log(string.substring(6));//Vader
-console.log(string.substring(1,6));//arth
-
-var str = "Apple, Banana, Kiwi";
-var res = str.substr(7, 6); //Banana
+//new array
+var str = "Luke, I am your Father";
+// String.split(), default cat dau comma=,
+console.log(str.split()); // 	['Luke, I am your Father' ]
+console.log(str.split('')); //	["L", "u", "k", "e", ",", " ", "I", " ", "a", "m", " ", "y", "o", "u", "r", " ", "F", "a", "t", "h", "e", "r"]
+console.log(str.split(' ')); // [ 'Luke,', 'I', 'am', 'your', 'Father' ]
+console.log(str.split(',')); // [ 'Luke', ' I am your Father' ]
 
 
-// chỉ thây char || word xuất hiện đầu tiên 
-var string = 'Fear is the path to the dark side.';
-console.log(string.replace('Fear', 'Tears')); //Tears is the path to the dark side.
-// /old/gi dung regular thay all <a> thanh all <A>
-console.log(string.replace(/a/gi, 'A'));//FeAr is the pAth to the dArk side.
+//new string, only replace match first
+const p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+console.log(p.replace('dog', 'monkey'));
+//The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?"
+
+const regex = /Dog/i;
+console.log(p.replace(regex, 'ferret'));
+//"The quick brown fox jumps over the lazy ferret. If the dog reacted, was it really lazy?"
 
 
+"xxx".replaceAll("", "_"); // "_x_x_x_"
+'aabbcc'.replaceAll('b', '.'); // 'aa..cc'
+'aabbcc'.replaceAll(/b/g, '.'); //"aa..cc"
+
+'aabbcc'.replaceAll(/b/, '.'); // error
+
+
+
+
+//new string
 var str = 'I find your lack of faith disturbing.';
 console.log(str.toUpperCase()); //I FIND YOUR LACK OF FAITH DISTURBING.
 
@@ -55,10 +54,12 @@ var text = "Hello" + " " + "World!";
 var text = "Hello".concat(" ", "World!");
 
 
+// new array
 // cắt spaces first && last 
 var text1 = "      Hello World!      ";
 var text2 = text1.trim();
-
+Array.trimStart()
+Array.trimEnd()
 
 
 // str.rjust(name, 20, "x")
@@ -69,6 +70,61 @@ str = str.padStart(20,"x"); //xxx5
 var str = "5";
 str = str.padEnd(20,"s"); //5sss
 
+
+// -------------------------------------------slice------------------------------------------
+//slice(start, end)
+//substring(start, end)
+
+/*
+	If start equals stop: returns an empty string
+	substring:
+		If start > stop, then substring will swap those 2 arguments.
+		If start vs stop so am or NaN thi cho ve 0.
+
+	slice:
+		If start > stop, slice() will return the empty string. ("")
+		If start is negative: sets char from the end of string
+		If stop is negative: sets stop to: string.length – Math.abs(stop) (original value), except bounded at 0 (thus, Math.max(0, string.length + stop)) as covered in the ECMA specification.
+
+*/
+
+const str = 'The morning is upon us.';
+str.slice(5, 1);  // returns empty '' // start > stop
+str.slice(5, 0);  // returns empty '' // start > stop
+str.slice(-3, -5);  // returns empty '' // start > stop
+
+str.slice(-3);     // returns 'us.'
+str.slice(-3, -1); // returns 'us'
+str.slice(0, -1);  // returns 'The morning is upon us'
+str.slice(4, -1);  // returns 'morning is upon us'
+
+console.log(str.slice(-11, 16)); // => "is u"
+console.log(str.slice(11, -7)); // => " is u"
+console.log(str.slice(-5, -1)); // => "n us"
+
+
+const str = 'Mozilla';
+
+// -3 ve 0; (0,4)
+console.log(str.substring(-3, 4)); // 'Mozi'
+// -2 ve 0; sau do swap (4,0) ve (0,4)
+console.log(str.substring(4, -2)); // 'Mozi'
+
+// Displays 'M'
+console.log(str.substring(0, 1));
+console.log(str.substring(1, 0));
+// Displays 'Mozill'
+console.log(str.substring(0, 6));
+// Displays 'lla'
+console.log(str.substring(4));
+console.log(str.substring(4, 7));
+console.log(str.substring(7, 4)); // swap stop start (7,4) thanh (4,7)
+
+// Displays 'Mozilla'
+console.log(str.substring(0, 7));
+console.log(str.substring(0, 10));
+
+// -------------------------------------------slice end--------------------------------------
 
 // index[1]
 var string = 'Fear leads to anger';
@@ -91,13 +147,13 @@ console.log(utfValuesArr);
 //[87, 101, 32, 109, 117, 115, 116, 32, 107, 101, 101, 112, 32, 111, 117, 114, 32, 102, 97, 105, 116, 104, 32, 105, 110, 32, 116, 104, 101, 32, 82, 101, 112, 117, 98, 108, 105, 99, 46]
 
 
-var str = "Luke, I am your Father";
-// String.split(), default cat dau comma=,
-console.log(str.split()); // 	['Luke, I am your Father' ]
-console.log(str.split('')); //	["L", "u", "k", "e", ",", " ", "I", " ", "a", "m", " ", "y", "o", "u", "r", " ", "F", "a", "t", "h", "e", "r"]
-console.log(str.split(' ')); // [ 'Luke,', 'I', 'am', 'your', 'Father' ]
-console.log(str.split(',')); // [ 'Luke', ' I am your Father' ]
-
+// utf-16 to string
+console.log(String.fromCharCode(65));//A
+console.log(String.fromCharCode(105, 106, 107));//ijk
+console.log(String.fromCharCode(32));//'' empty space!
+var arr = [77, 97, 121, 32, 116, 104, 101, 32, 70, 111, 114, 99, 101, 32, 66, 101, 32, 87, 105, 116, 104, 32, 89, 111, 117];
+var quotes = arr.map(n => String.fromCharCode(n));
+console.log(quotes.join('')); //May the Force Be With You
 
 
 // indexOf() co 2 arguments, NOT regex
@@ -117,16 +173,56 @@ console.log(str.lastIndexOf('.')); //117
 console.log(str.lastIndexOf('.', 0)); //-1
 
 
-
 // search() chi co 1 argument, va dung duoc regex //g
+// return index of 'sub' if found
 var str = "Please locate where 'locate' occurs!";
-str.search("locate");
+str.search("locate"); // return index if found else -1
 
+
+/*
+	/regex/g 	global
+	/regex/i 	khong phan biet hoa thuong
+*/
+
+// return array
 // string.match(regexp) return Array[...match_items]
 var text = "The rain in SPAIN stays mainly in the plain";
 var array = text.match(/ain/gi); // [ain,AIN,ain,ain]
 
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regex = /[A-Z]/g;
+const found = paragraph.match(regex);
+console.log(found); // ["T", "I"]
 
+
+const regexp = /t(e)(st(\d?))/g;
+const str = 'test1test2';
+
+const array = [...str.matchAll(regexp)];
+
+console.log(array[0]);
+// ["test1", "e", "st1", "1"] ; // [fullgroup, g1,g2,g3, groupsub ,...]
+
+console.log(array[1]);
+// ["test2", "e", "st2", "2"]
+
+
+const regexp = /t(e)(st(\d?))/g;
+const str = 'test1test2';
+str.match(regexp);
+// Array ['test1', 'test2']
+
+const array = [...str.matchAll(regexp)];
+array[0];
+// ['test1', 'e', 'st1', '1', index: 0, input: 'test1test2', length: 4]
+array[1];
+// ['test2', 'e', 'st2', '2', index: 5, input: 'test1test2', length: 4]
+
+
+
+
+
+// -----------------------------------------bool---------------------------------------------
 // co phan biet Hoa thuong
 var str = 'Never tell me the odds!';
 console.log(str.startsWith('Never')); //true
@@ -140,7 +236,7 @@ console.log(str.endsWith('try', 30)); //true
 console.log(str.endsWith('try.', 30)); //false
 
 // string.includes(searchvalue, start)
-// find return true false
+// 'sub' in string;  string co chua 'sub' ko
 var str = 'The Force will be with you. Always.';
 console.log(str.includes('Force')); //true
 //Chú ý: includes Phân biệt hoa thường!
@@ -153,21 +249,4 @@ console.log(newStr.includes('force')); //true
 console.log(str.includes('w', 0)); //true
 console.log(str.includes('T', 1)); //false
 
-
-
-
-
-
-
-
-
-// utf-16 to string
-console.log(String.fromCharCode(65));//A
-console.log(String.fromCharCode(105, 106, 107));//ijk
-console.log(String.fromCharCode(32));//'' empty space!
-
-
-var arr = [77, 97, 121, 32, 116, 104, 101, 32, 70, 111, 114, 99, 101, 32, 66, 101, 32, 87, 105, 116, 104, 32, 89, 111, 117];
-var quotes = arr.map(n => String.fromCharCode(n));
-console.log(quotes.join('')); //May the Force Be With You
-
+// -----------------------------------------bool end-----------------------------------------
