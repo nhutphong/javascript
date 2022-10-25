@@ -1,7 +1,19 @@
 /*
-
+  declared variable use keywork `let vs const`, thi variable la local variable chi co the access in
+  block da declared no
+  use keyword `var` when declared, thi bien la global variable, co the access, o bat ky dau
 
 */
+
+// variable declared using let
+let name = 'Sara';
+{
+    // can be accessed only inside
+    let name = 'Peter';
+
+    console.log(name); // Peter
+}
+console.log(name); // Sara 
 
 
 var time = new Date().getHours();

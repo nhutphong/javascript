@@ -12,7 +12,11 @@
 	async-await, lam cho code bat dong do, run dong bo( tu code run tu tren xuong duoi)
 */
 
-setInterval(myFunction, 1000);
+/*
+
+*/
+
+setInterval(myFunction, 5000);
 
 function myFunction() {
   let d = new Date();
@@ -22,12 +26,7 @@ function myFunction() {
   d.getSeconds();
 }
 
-
-
-
-
 // Promise
-
 function myDisplayer(some) {
   document.getElementById("promise").innerHTML = some + " five=myDisplayer";
 }
@@ -40,12 +39,13 @@ var promise = new Promise(function(resolve, reject) {
   if (x == 0) {
     resolve("resolve");
     // "OK" pass to fuction .then((value="OK")) dau tien
-    /* return cua function then truoc la value cua function then sau  */
+    /* return cua function then truoc la 'value' cua function then sau  */
   } else {
     reject("Error"); // "Error cung vay"
   }
 });
 
+/* return cua function then truoc la 'value' cua function then sau  */
 promise
 	.then((value) => `${value} one`)
 	.then((value) => `${value} two`)
@@ -80,10 +80,7 @@ promise
 */
 
 
-
-
 // async await
-
 /*
 	// async fucntion getData() {}
 	const getData = async() => {
@@ -91,7 +88,8 @@ promise
 		return data; // pass data to resolve(data) of reject(data)
 	}
 
-	// khong co keyword await data; nen code them line duoi
+	// khong co keyword:
+		var data = await "hello world"; nen code them line duoi
 	getData().then(data => console.log(data)); c1
 
 
@@ -100,10 +98,9 @@ promise
 		var data = await "Hello World";
 		return data;
 	}
+	// vi co await, nen da run ngam; getData().then(data => console.log(data)); c1
 	// khong can code them .then
 */
-
-
 
 
 const human = async() => {
@@ -155,13 +152,11 @@ async function main() {
 }
 
 
-
 console.log(1);
 main();
 console.log(2);
 console.log(3);
 console.log(4);
-
 
 
 async function asynchronous_operational_method() {
@@ -223,10 +218,9 @@ asyncFunc(); // Promise resolved
 
     // We catch the error upon calling the function.
     doSomethingAsync().
-        .then(successHandler)
-        .catch(errorHandler);
+        .then(okFunction)
+        .catch(errorFunction);
 */
-
 
 
 /*
@@ -285,4 +279,3 @@ console.log(4);
 // one().then((value) => {console.log(value)});
 // two().then((value) => {console.log(value)});
 // three().then((value) => {console.log(value)});
-

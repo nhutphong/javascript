@@ -63,3 +63,9 @@ import {sayHi as hi, sayBye as bye} from './say.js';
 
 hi('John'); // Hello, John!
 bye('John'); // Bye, John!
+
+
+// export
+export default function contact(name, age) {
+    console.log(`The name is ${name}. And age is ${age}.`);
+}

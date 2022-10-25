@@ -60,7 +60,7 @@ var myAge = new MyAge(23);
 console.log('My age is', myAge - 1); // My age is 22
 
 
-// Object.create({}) ; // value_type and ref_type
+// Object.create({}) ; // value_type and ref_type=pointer
 const job = {
     position: 'haha',
     type: 'hourly',

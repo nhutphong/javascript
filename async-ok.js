@@ -10,6 +10,11 @@
 	chi là python khi run cần qua asyncio.run(main())
 */
 
+/*
+	setTimeout(functionArrow, 5000); // sau 5s run, xong roi stop
+	setInterval(functionArrow, 1000) // sau 1s run, roi cu run forever sau 1s 
+*/
+
 
 
 async function sleep(second) {
@@ -92,6 +97,6 @@ async function main() {
 
 console.log(1);
 console.log(2);
+main();
 console.log(3);
 console.log(4);
-main();
