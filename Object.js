@@ -7,40 +7,6 @@
   var obj = {}; //nen dung keyword var
 */
 
-var person = {
-  name: "John",
-  age: 30,
-  city: "New York"
-};
-document.getElementById("demo").innerHTML = person.name + "," + person.age + "," + person.city; //c1
-
-//
-let txt = "";
-for (let key in person) { //c2
-  txt += person[key] + " ";
-};
-document.getElementById("demo").innerHTML = txt;
-
-//
-var myArray = Object.values(person); //c3
-document.getElementById("demo").innerHTML = myArray; // John,30,New York
-
-//
-let myString = JSON.stringify(person); //c4
-document.getElementById("demo").innerHTML = myString; // {"name":"John","age":30,"city":"New York"}
-
-//
-var person = {
-  name: "John",
-  age: function () {return 30;} // hidden by JSON
-};
-person.age = person.age.toString(); // convert to string se hien function
-
-//
-let myString = JSON.stringify(person);
-document.getElementById("demo").innerHTML = myString; // {"name":"John","age":"function () {return 30;}"}
-
-
 // getter setter
 
 
@@ -167,6 +133,7 @@ console.log(Object.entries(obj)); // [ [ 'firstName', 'Hieu' ], [ 'lastName', 'B
 
 // get keys of object into array
 var arr = ['a', 'b', 'c'];
+// dictObj.keys()
 console.log(object.keys(arr)); // ['0', '1', '2']
 
 var obj = { 0: 'a', 1: 'b', 2: 'c' };
@@ -178,4 +145,163 @@ var obj = {
   firstName: 'Hieu',
   lastName: 'Bui'
 };
+// dictObj.values()
 console.log(Object.values(obj)); // [ 'Hieu', 'Bui' ]
+
+
+const entries = new Map([
+  ['foo', 'bar'],
+  ['baz', 42]
+]);
+// info = dict([('name', 'thong'), ('old', 30)])
+const obj = Object.fromEntries(entries);
+console.log(obj);
+//{ foo: "bar", baz: 42 }
+
+let pair = [['name', 'thong'], ['old', 33]]
+const obj2 = Object.fromEntries(pair);
+console.log(obj); // {name: 'thong', old:33}
+
+
+
+const obj = {
+  prop: 42
+};
+
+// cam obj set value cho prop
+Object.freeze(obj);
+// cam arr add them item
+// Object.freeze(arr);
+
+obj.prop = 33; //error
+
+console.log(obj.prop);
+// expected output: 42
+
+// check obj co bi freeze
+Object.isFrozen(obj); // === true
+
+
+
+const object1 = {
+  property1: 42
+};
+
+// cam khong cho delete prop, van co the set value cho prop
+Object.seal(object1);
+object1.property1 = 33;
+console.log(object1.property1);
+// expected output: 33
+
+delete object1.property1; // cannot delete when sealed
+console.log(object1.property1);
+// expected output: 33
+
+
+
+const object1 = {
+  property1: 42
+};
+// check obj co the delete prop ko
+console.log(Object.isSealed(object1));
+//  false
+Object.seal(object1);
+console.log(Object.isSealed(object1));
+//  true
+
+
+const example = {};
+example.prop = 'exists';
+// only check prop:
+Object.hasOwn(example, 'prop');             // returns true
+Object.hasOwn(example, 'toString');         // returns false
+Object.hasOwn(example, 'hasOwnProperty');   // returns false
+
+// The `in` check ca props and methods:
+'prop' in example;                          // returns true
+'toString' in example;                      // returns true
+'hasOwnProperty' in example;                // returns true
+
+
+// Object.is(value1, value2)
+// Case 2: Signed zero
+// giong voi ===
+Object.is(0, -0); // false
+Object.is(+0, -0); // false
+Object.is(-0, -0); // true
+
+// Case 3: NaN
+Object.is(NaN, 0 / 0); // true
+Object.is(NaN, Number.NaN); // true
+
+
+// giong format 
+const obj = {
+  toString() {
+    return "My Object";
+  }
+};
+console.log(obj.toLocaleString()); // "My Object"
+
+const testArray = [4, 7, 10];
+const euroPrices = testArray.toLocaleString("fr", {
+  style: "currency",
+  currency: "EUR",
+});
+// "4,00 €,7,00 €,10,00 €"
+
+const testDate = new Date();
+// "Fri May 29 2020 18:04:24 GMT+0100 (British Summer Time)"
+const deDate = testDate.toLocaleString("de");
+// "29.5.2020, 18:04:24"
+const frDate = testDate.toLocaleString("fr");
+// "29/05/2020, 18:04:24"
+
+const testNumber = 2901234564;
+// "2901234564"
+const deNumber = testNumber.toLocaleString("de");
+// "2.901.234.564"
+const frNumber = testNumber.toLocaleString("fr");
+// "2 901 234 564"
+
+
+
+class Dog {
+  constructor(name, breed, color, sex) {
+    this.name = name;
+    this.breed = breed;
+    this.color = color;
+    this.sex = sex;
+  }
+  toString() {
+    return `Dog ${this.name} is a ${this.sex} ${this.color} ${this.breed}`;
+  }
+}
+
+// giong __str__(self)
+const theDog = new Dog("Gabby", "Lab", "chocolate", "female");
+// neu khong co define toString() thi kq giong ben duoi
+theDog.toString(); // "[object Object]"
+`${theDog}`; // "[object Object]"
+
+// co defind toString()
+const theDog = new Dog("Gabby", "Lab", "chocolate", "female");
+`${theDog}`; // "Dog Gabby is a female chocolate Lab"
+
+
+class Box {
+  #value;
+  constructor(value) {
+    this.#value = value;
+  }
+  valueOf() {
+    return this.#value;
+  }
+}
+const box = new Box(123);
+// khi box giong nhu run box.valueOf() = 123
+// tuc box = 123
+console.log(box + 456); // 579
+console.log(box == 123); // true
+
+
