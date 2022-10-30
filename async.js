@@ -27,8 +27,8 @@ function myFunction() {
 }
 
 // Promise
-function myDisplayer(some) {
-  document.getElementById("promise").innerHTML = some + " five=myDisplayer";
+function myDisplayer(value) { // value='ok one two three four'
+  document.getElementById("promise").innerHTML = value + " five=myDisplayer";
 }
 
 var promise = new Promise(function(resolve, reject) {
@@ -37,22 +37,28 @@ var promise = new Promise(function(resolve, reject) {
 // some code (try to change x to 5)
 
   if (x == 0) {
-    resolve("resolve");
-    // "OK" pass to fuction .then((value="OK")) dau tien
-    /* return cua function then truoc la 'value' cua function then sau  */
+    resolve("ok");
+    // 'ok' pass to then((value='ok') => {})
   } else {
-    reject("Error"); // "Error cung vay"
+    reject("loi roi"); // 'loi roi' pass to .catch((err='loi roi') => {})
   }
 });
 
+/*
+	callback = (value) => value //anonymous function
+	.then(callback) 
+
+	callback = (err) => err //anonymous function
+	.catch(callback) 
+*/
 /* return cua function then truoc la 'value' cua function then sau  */
 promise
-	.then((value) => `${value} one`)
-	.then((value) => `${value} two`)
-	.then((value) => `${value} three`)
-	.then((value) => `${value} four`)
-	.then(myDisplayer)
-	.catch((err) => {
+	.then((value) => `${value} one`) // 	value='ok'
+	.then((value) => `${value} two`) // 	value='ok one'
+	.then((value) => `${value} three`) //	value='ok one two'
+	.then((value) => `${value} four`) //	value='ok one two three'
+	.then(myDisplayer) //					value='ok one thwo three four'
+	.catch((err) => { // err='loi roi'
 		console.error(err);
 		});
 /*

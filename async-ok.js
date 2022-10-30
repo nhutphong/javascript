@@ -20,6 +20,8 @@
 async function sleep(second) {
 	return new Promise((resolve) => setTimeout(resolve, second * 1000));
 }
+// sleep(); //is 1 promise obj // use async
+// sleep = Promise(); //is 1 promise obj
 
 
 const animal = async() => {
