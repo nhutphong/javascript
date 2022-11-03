@@ -40,7 +40,6 @@ console.log(p.replace(regex, 'ferret'));
 
 
 
-
 //new string
 var str = 'I find your lack of faith disturbing.';
 console.log(str.toUpperCase()); //I FIND YOUR LACK OF FAITH DISTURBING.
@@ -137,6 +136,7 @@ console.log(string.charAt());//F
 
 var string = 'We must keep our faith in the Republic.';
 // string[0] is 'W', ord('W') is 87 theo python
+// string.charCodeAt(index)
 console.log(string.charCodeAt(0));//87
 console.log(string.charCodeAt(5));//115 ord('s')=115 chr(115)='s'
 //Nếu bạn muốn lấy tất cả giá trị UTF-8 của các ký tự trong chuỗi
@@ -147,7 +147,7 @@ console.log(utfValuesArr);
 //[87, 101, 32, 109, 117, 115, 116, 32, 107, 101, 101, 112, 32, 111, 117, 114, 32, 102, 97, 105, 116, 104, 32, 105, 110, 32, 116, 104, 101, 32, 82, 101, 112, 117, 98, 108, 105, 99, 46]
 
 
-// utf-16 to string
+// utf-16 to string, python: chr(65) = 'A'
 console.log(String.fromCharCode(65));//A
 console.log(String.fromCharCode(105, 106, 107));//ijk
 console.log(String.fromCharCode(32));//'' empty space!
@@ -180,8 +180,8 @@ str.search("locate"); // return index if found else -1
 
 
 /*
-	/regex/g 	global
-	/regex/i 	khong phan biet hoa thuong
+	/<regex>/g 	/g global
+	/<regex>/i 	/i khong phan biet hoa thuong
 */
 
 // return array
@@ -217,9 +217,6 @@ array[0];
 // ['test1', 'e', 'st1', '1', index: 0, input: 'test1test2', length: 4]
 array[1];
 // ['test2', 'e', 'st2', '2', index: 5, input: 'test1test2', length: 4]
-
-
-
 
 
 // -----------------------------------------bool---------------------------------------------

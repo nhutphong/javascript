@@ -34,10 +34,10 @@ Array.from(set);
 const map = new Map([[1, 2], [2, 4], [4, 8]]);
 Array.from(map);
 // [[1, 2], [2, 4], [4, 8]]
-const mapper = new Map([['1', 'a'], ['2', 'b']]);
-Array.from(mapper.values());
+const dict = new Map([['1', 'a'], ['2', 'b']]);
+Array.from(dict.values());
 // ['a', 'b'];
-Array.from(mapper.keys());
+Array.from(dict.keys());
 // ['1', '2'];
 
 function f() {
@@ -141,7 +141,7 @@ console.log([1, 2].concat([3, , 5])); // [1, 2, 3, empty, 5]
 // --------------------------------in-place--------------------------------------------
 // insert end "kiwi" into arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-var len = fruits.push("Kiwi");
+var len = fruits.push("Kiwi"); // = fruits.lenght=5
 
 // remove last item of arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
@@ -149,16 +149,16 @@ var del_end_item = fruits.pop(); // 'Mango'
 
 // insert first "Lemon" into arr
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.unshift("Lemon"); // lenght=5
+var len = fruits.unshift("Lemon"); // len = fruits.length=5
 
 // remove first item
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-var del_first_item = fruits.shift(); "Banana"
+var del_first_item = fruits.shift(); //"Banana"
 
 
 // in-place, insert remove
 const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
-const removed = myFish.splice(2, 0, 'drum');
+const removed = myFish.splice(2, 0, 'drum'); // []
 
 // myFish is ["angel", "clown", "drum", "mandarin", "sturgeon"]
 // removed is [], no elements removed
@@ -170,19 +170,18 @@ const removed = myFish.splice(2, 0, 'drum', 'guitar');
 // removed is [], no elements removed
 
 const myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
-const removed = myFish.splice(3, 1);
+const removed = myFish.splice(3, 1); // ["mandarin"]
 // myFish is ["angel", "clown", "drum", "sturgeon"]
 // removed is ["mandarin"]
 
 const myFish = ['angel', 'clown', 'drum', 'sturgeon'];
-const removed = myFish.splice(2, 1, 'trumpet');
+const removed = myFish.splice(2, 1, 'trumpet'); // ["drum"]
 // myFish is ["angel", "clown", "trumpet", "sturgeon"]
 // removed is ["drum"]
 
 const myFish = ['angel', 'clown', 'trumpet', 'sturgeon'];
-const removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue');
+const removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue'); // ["angel", "clown"]
 // myFish is ["parrot", "anemone", "blue", "trumpet", "sturgeon"]
-// removed is ["angel", "clown"]
 
 const myFish = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
 const removed = myFish.splice(2, 2);
@@ -254,6 +253,7 @@ console.log([1, 2, 3].fill(4, -3, -2));        // [4, 2, 3]
 console.log([1, 2, 3].fill(4, NaN, NaN));      // [1, 2, 3]
 console.log([1, 2, 3].fill(4, 3, 5));          // [1, 2, 3]
 console.log(Array(3).fill(4));                 // [4, 4, 4]
+
 
 // A single object, referenced by each slot of the array:
 const arr = Array(3).fill({}); // [{}, {}, {}]
@@ -498,6 +498,8 @@ array.indexOf(2, -3); // 0
 
 
 // Finding all the occurrences of an element
+// indexOf(searchElement)
+// indexOf(searchElement, fromIndex)
 const indices = [];
 const array = ['a', 'b', 'a', 'c', 'a', 'd'];
 const element = 'a';
@@ -509,6 +511,7 @@ while (idx !== -1) {
 console.log(indices);
 // [0, 2, 4]
 
+// searching item
 // return item dau tien thoa man dieu kien = left to right
 const array1 = [5, 12, 8, 130, 44];
 const found = array1.find(element => element > 10);
@@ -542,7 +545,7 @@ console.log([1, , 3].findIndex((x) => x === undefined)); // 1
 var first_index = numbers.findIndex(funcBool);
 
 
-// right to left, return item thoa man dk
+// right to left, return item first thoa man dk
 // 
 const array1 = [5, 12, 50, 130, 44];
 const found = array1.findLast((element) => element > 45);
@@ -607,10 +610,10 @@ arr.flat();
 arr.reduce((acc, val) => acc.concat(val), []);
 // [1, 2, 3, 4]
 // or with decomposition syntax
-const flattened = (arr) => [].concat(...arr);
+const flattened = (arr) => [].concat(...arr); // [1, 2, 3, 4]
+
 
 const arr1 = [1, 2, 3, 4];
-
 arr1.map((x) => [x * 2]);
 // [[2], [4], [6], [8]]
 
@@ -629,6 +632,7 @@ arr1.flatMap((x) => x.split(" "));
 
 console.log([1, 2, , 4, 5].flatMap(x => [x, x * 2])); // [1, 2, 2, 4, 4, 8, 5, 10]
 console.log([1, 2, 3, 4].flatMap(x => [, x * 2])); // [2, 4, 6, 8]
+
 
 // reduce
 var numbers = [45, 4, 9, 16, 25];
